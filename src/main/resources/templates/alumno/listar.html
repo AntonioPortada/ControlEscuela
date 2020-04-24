@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.orgs"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>DETALLES</th>
+				<th>NOMBRE</th>
+				<th>APELLIDOS</th>
+				<th>TELEFONO</th>
+				<th>EMAIL</th>
+				<th>FECHA INGRESO</th>
+				<th sec:authorize="hasRole('ROLE_ADMIN')">EDITAR</th>
+				<th sec:authorize="hasRole('ROLE_ADMIN')">ELIMINAR</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="alumno: ${alumnos}">
+				<td><a th:href="@{/alumno/detalle/} + ${alumno.value.id}" class="btn btn-dark" th:text="${alumno.key}"></a></td>
+				<td th:text="${alumno.value.nombre}"></td>
+				<td th:text="${alumno.value.apPat} +' '+ ${alumno.value.apMat}"></td>
+				<td th:text="${alumno.value.tel}"></td>
+				<td th:text="${alumno.value.email}"></td>
+				<td th:text="${#dates.format(alumno.value.fechaIngreso, 'dd/MM/yyyy')}"></td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/alumno/form/} + ${alumno.value.id}" class="btn btn-primary">E</a></td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/alumno/delete/} + ${alumno.value.id}" class="btn btn-danger" onclick="return confirm('Seguro que deseas ELIMINAR')">X</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/alumno/form}" class="btn btn-success" sec:authorize="hasRole('ROLE_ADMIN')">Registrar</a>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

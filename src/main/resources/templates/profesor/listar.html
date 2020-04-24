@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.orgs">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+	<table class="table table-triped">
+		<thead>
+			<tr>
+				<th>DETALLES</th>
+				<th>NOMBRE</th>
+				<th>APELLIDOS</th>
+				<th>FECHA INGRESO</th>
+				<th>EDITAR</th>
+				<th>ELIMINAR</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="profesor: ${profesores}">
+				<td><a th:href="@{/profesor/detalle/} + ${profesor.value.id}" class="btn btn-dark" th:text="${profesor.key}"></a></td>
+				<td th:text="${profesor.value.nombre}"></td>
+				<td th:text="${profesor.value.apPat} +' '+ ${profesor.value.apMat}"></td>
+				<td th:text="${#dates.format(profesor.value.fechaIngreso, 'dd/MM/yyyy')}"></td>
+				<td><a th:href="@{/profesor/form/} + ${profesor.value.id}" class="btn btn-primary">E</a></td>
+				<td><a th:href="@{/profesor/delete/} + ${profesor.value.id}" class="btn btn-danger" onclick="return confirm('Seguro que deseas ELIMINAR')">X</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/profesor/form}" class="btn btn-success">Registrar</a>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+	<div class="card bg-light">
+		<div class="card-header" th:text="${encabezado}"></div>
+		<div class="card-body">
+			<ul class="list-group">
+				<li class="list-group-item" th:text="'MATRICULA: ' + ${profesor.id}"></li>
+				<li class="list-group-item" th:text="'NOMBRE: ' + ${profesor.nombre} +' '+ ${profesor.apPat} +' '+ ${profesor.apMat}"></li>
+				<li class="list-group-item" th:text="'EMAIL: ' + ${profesor.email}"></li>
+				<li class="list-group-item" th:text="'TELEFONO: ' + ${profesor.tel}"></li>
+				<li class="list-group-item" th:text="'MATERIA: ' + ${profesor.materia}"></li>
+				<li class="list-group-item" th:text="'FECHA INGRESO: ' + ${#dates.format(profesor.fechaIngreso, 'dd/MM/yyyy')}"></li>
+			</ul>
+		</div>
+	</div>
+	<p class="py-4"><a th:href="@{/profesor/listar}" class="btn btn-outline-dark">Regresar</a></p>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

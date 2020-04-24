@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+	<ul>
+		<li th:text="${alumno.nombre}"></li>
+		<li th:text="${alumno.apPat}"></li>
+		<li th:text="${alumno.apMat}"></li>
+		<li th:text="${alumno.tel}"></li>
+		<li th:text="${alumno.email}"></li>
+		<li th:text="${alumno.fechaIngreso}"></li>
+	</ul>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

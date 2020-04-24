@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<p class="container">
+		<a th:href="@{/alumno/listar}" class="btn btn-danger">Cancelar</a>
+	</p>
+
+	<div class="container text-center py-4 border">
+		<h3>Formulario para Nuevo Alumno</h3>
+
+		<form th:action="@{/alumno/form}" method="post" th:object="${alumno}">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="nombre">NOMBRE</label> 
+					<input type="text" class="form-control" th:field="*{nombre}" th:disabled="${alumno.id}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="apPat">APELLIDO PATERNO</label> 
+					<input type="text" class="form-control" th:field="*{apPat}" th:disabled="${alumno.id}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('apPat')}" th:errors="*{apPat}"></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="apMat">APELLIDO MATERNO</label> 
+					<input type="text" class="form-control" th:field="*{apMat}" th:disabled="${alumno.id}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('apMat')}" th:errors="*{apMat}"></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="tel">TELEFONO</label> 
+					<input type="text" class="form-control" th:field="*{tel}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="apMat">EMAIL</label> 
+					<input type="email" class="form-control" th:field="*{email}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="apMat">FECHA INGRESO</label> 
+					<input type="text" class="form-control" th:field="*{fechaIngreso}" placeholder="dd/mm/yyyy" th:disabled="${alumno.id}" />
+					<div class="alert-danger" th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="*{fechaIngreso}"></div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Enviar</button>
+		</form>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
